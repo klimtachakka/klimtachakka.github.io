@@ -85,6 +85,14 @@
         }
         document.getElementById("loadText").remove();
       }, 5000);
+
+
+      
+      document.getElementById("stage").addEventListener("click", function() {
+        document.documentElement.requestFullScreen();
+        screen.orientation.lock("landscape-primary");
+        }, false);
+          
     </script>
   </body>
 </html>
