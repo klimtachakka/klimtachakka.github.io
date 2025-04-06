@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>Far from grace</title>
+
+    <style type="text/css">
+      @font-face {
+        font-family: "dorito";
+        src: url("../assets/2015-Cruiser.woff2") format("woff2"),
+          url("../assets/2015-Cruiser.woff") format("woff"),
+          url("../assets/2015-Cruiser.ttf") format("ttf");
+        font-weight: 100;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "dorito2";
+        src: url("../assets/braciola_ms-webfont.woff2") format("woff2"),
+          url("../assets/braciola_ms-webfont.woff") format("woff"),
+          url("../assets/braciola_ms-webfont.ttf") format("ttf");
+
+        font-weight: 100;
+        font-style: normal;
+      }
+    </style>
+  </head>
+
+  <body style="padding:0;margin:0; background:black;">
+    <p
+      id="font"
+      style="color:black; font-family: dorito, dorito2, monospace; font-size: 1px;"
+    >
+      for loading font
+    </p>
+    <script>
+      var exports = {};
+    </script>
+    <div style="text-align: center;">
+      <div style="display:inline-block;">
+        <canvas
+          oncontextmenu="return false;"
+          width="100%"
+          height="100% "
+          id="stage"
+        />
+      </div>
+      <div
+        id="loadText"
+        style="position: fixed; z-index: 200; left:200;top:200;"
+      >
+        <span
+          style="width:800px;display:block; color:white; font-family:monospace; font-size: 20; text-align: left;"
+          >initializing...<br />loading space data...</span
+        >
+      </div>
+    </div>
+    <script>
+      var loaded = false;
+      var addMain = function() {
+        var my_awesome_script = document.createElement("script");
+        my_awesome_script.setAttribute(
+          "src",
+          "dist.min.js?" + new Date().getTime()
+        );
+        document.head.appendChild(my_awesome_script);
+        loaded = true;
+      };
+
+      try {
+        document.fonts.onloadingdone = function(fontFaceSetEvent) {
+          document.getElementById("font").remove();
+
+          addMain();
+          document.getElementById("loadText").remove();
+        };
+      } catch (e) {
+        document.getElementById("loadText").innerHTML(JSON.stringify(e));
+        if (!loaded) {
+          addMain();
+        }
+      }
+
+      setTimeout(function() {
+        if (!loaded) {
+          addMain();
+        }
+        document.getElementById("loadText").remove();
+      }, 5000);
+
+      
+
+
+      /*
+      document.getElementById("stage").addEventListener("click", function() {
+        document.documentElement.requestFullScreen();
+        screen.orientation.lock("landscape-primary");
+        }, false);
+        */
+          
+    </script>
+  </body>
+</html>
