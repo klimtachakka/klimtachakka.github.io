@@ -67,10 +67,10 @@
 
       try {
         document.fonts.onloadingdone = function(fontFaceSetEvent) {
-          document.getElementById("font").remove();
+          document.getElementById("font")?.remove?.();
 
           addMain();
-          document.getElementById("loadText").remove();
+          document.getElementById("loadText")?.remove?.();
         };
       } catch (e) {
         document.getElementById("loadText").innerHTML(JSON.stringify(e));
@@ -83,7 +83,7 @@
         if (!loaded) {
           addMain();
         }
-        document.getElementById("loadText").remove();
+        document.getElementById("loadText")?.remove?.();
       }, 5000);
 
       
